@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql" Version="5.5.14.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.29" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="MySql.Web" Version="8.0.29" />
+    <PackageReference Include="MySqlConnector" Version="2.1.9" />
+    <PackageReference Include="Telegram.Bot" Version="16.0.2" />
+  </ItemGroup>
+
+</Project>
