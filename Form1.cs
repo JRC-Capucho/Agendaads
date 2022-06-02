@@ -12,6 +12,7 @@ public partial class Form1 : Form
     private Db bancoDados = new Db();
     private System.Timers.Timer aTimer;
 
+    [Obsolete]
     public Form1()
     {
         InitializeComponent();
@@ -40,11 +41,12 @@ public partial class Form1 : Form
         tBot.StopReceiving();
     }
 
+    [Obsolete]
     private void tBot_OnCallbackQuery(object? sender, CallbackQueryEventArgs e)
     {
         var id = e.CallbackQuery.From.Id;
         var msg = e.CallbackQuery.Data.ToString();
-        string aux,aux1;
+        string aux;
         
         msg = msg.ToLower();
 
@@ -58,18 +60,14 @@ public partial class Form1 : Form
 
                     Boolean sair = true;
                 do{
-
-                    if(bancoDados.inicioDaAula() != null)
+                    if(bancoDados.inicioDaAula())
                     {
-                        aux1 = bancoDados.inicioDaAula();
-                        aux = bancoDados.msgAula(aux1);
+                        aux = bancoDados.msgAula();
 
                         tBot.SendTextMessageAsync(id,"\n<b>Agenda Fatec 3 ADS</b>\n" + aux + "\n",
                         Telegram.Bot.Types.Enums.ParseMode.Html, replyMarkup: null);
                     }
-
                     Thread.Sleep(60000);
-
                 }while(sair);
             }
             else if(msg == "nao")
@@ -82,18 +80,15 @@ public partial class Form1 : Form
             }
     }
 
-    
-    
+    [Obsolete]
     private void tBot_OnMessage(object? sender, MessageEventArgs e)
     {
         var id = e.Message.From.Id;
         var msg = e.Message.Text.ToString();
         msg = msg.ToLower();
             
-
             if(msg.Equals("3ads"))
             {
-
                 tBot.SendTextMessageAsync(id,
                 "\n<b>Agenda Fatec 3 ADS</b>\n" +
                 "\nOla, aluno do terceiro semestre de analise e desenvolvimento de sistemas!" +
@@ -110,7 +105,6 @@ public partial class Form1 : Form
             }
 
     }
-
     public InlineKeyboardMarkup CreateButton()
     {
         List<InlineKeyboardButton> btn = new List<InlineKeyboardButton>();

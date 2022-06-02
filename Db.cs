@@ -13,25 +13,28 @@ public class Db
 
     private string data;
     private TimeOnly hora; 
-    private DateOnly dataAula = DateOnly.FromDateTime(DateTime.Now);
-    private string aula = "select * from grade where inicioaula=@t, data=@o;";
+    private DateOnly dataAula;
+    private string horarioDaAula;
+    private string diaDaAula;
 
-    public string msgAula(string aux)
+    private string aula = "select * from grade where inicioaula=@t and data=@d;";
+
+    public string msgAula()
     {
         try
         {
             command = new MySqlCommand(aula, connection);
 
-            command.Parameters.AddWithValue("@t", aux);
-            command.Parameters.AddWithValue("@o", aux1)
-
+            command.Parameters.AddWithValue("@t", horarioDaAula);
+            command.Parameters.AddWithValue("@d", diaDaAula);
+            
             connection.Open();
 
             reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                data += 
+                data = 
                 "Professor: " + Convert.ToString(reader["professor"]) + "\n" + 
                 "Disciplina: " + Convert.ToString(reader["aula"]) + "\n" +
                 "Inicio da aula: " + Convert.ToString(reader["inicioaula"]) + "\n" +
@@ -53,15 +56,14 @@ public class Db
 
     private string tempoAula = "select inicioaula, data from grade;";
 
-    public string inicioDaAula()
+    public Boolean inicioDaAula()
     {
         hora = TimeOnly.FromDateTime(DateTime.Now);
+        dataAula = DateOnly.FromDateTime(DateTime.Now);
 
-
-        string horarioDaAula;
+        
         string aux = hora.ToString();
-        string auxdata = dataAula.ToString();
-        string auxdata1;
+        string auxdata = dataAula.DayOfWeek.ToString().ToLower();
 
         try
         {
@@ -72,23 +74,14 @@ public class Db
 
             while(reader.Read())
             {
-                horarioDaAula = Convert.ToString(reader["inicioaula"]);
-                auxdata1 = convert.ToString(reader["data"]);
+                horarioDaAula = Convert.ToString(reader["inicioaula"]);                
+                diaDaAula = Convert.ToString(reader["data"]);
 
-                if(aux.Length > 7)
-                    if(horarioDaAula.Equals(aux.Substring(0,5)) && auxdata.Equals(auxdata1))
+                    if(horarioDaAula.Equals(aux) && auxdata.Equals(diaDaAula) )
                     {
                         connection.Close();
-                        return horarioDaAula;
+                        return true;
                     }
-                else
-                {
-                    if(horarioDaAula.Equals(aux.Substring(0,4)) && auxdata.Equals(auxdata1))
-                    {
-                        connection.Close();
-                        return horarioDaAula;
-                    }
-                }
             }
         }
         catch (MySql.Data.MySqlClient.MySqlException ex)
@@ -99,7 +92,7 @@ public class Db
         {
             connection.Close();
         }
-        return null;
+        return false;
     }
 
     public void fecharDB()
