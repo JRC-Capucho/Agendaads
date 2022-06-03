@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zerou\\Projetos\\Agendaads\\AgendaADS.csproj": {}
+    "C:\\Users\\Joao's computer\\workspace\\project\\AgendaADS\\AgendaADS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zerou\\Projetos\\Agendaads\\AgendaADS.csproj": {
+    "C:\\Users\\Joao's computer\\workspace\\project\\AgendaADS\\AgendaADS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zerou\\Projetos\\Agendaads\\AgendaADS.csproj",
+        "projectUniqueName": "C:\\Users\\Joao's computer\\workspace\\project\\AgendaADS\\AgendaADS.csproj",
         "projectName": "AgendaADS",
-        "projectPath": "C:\\Users\\zerou\\Projetos\\Agendaads\\AgendaADS.csproj",
-        "packagesPath": "C:\\Users\\zerou\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zerou\\Projetos\\Agendaads\\obj\\",
+        "projectPath": "C:\\Users\\Joao's computer\\workspace\\project\\AgendaADS\\AgendaADS.csproj",
+        "packagesPath": "C:\\Users\\Joao's computer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Joao's computer\\workspace\\project\\AgendaADS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\zerou\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Joao's computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

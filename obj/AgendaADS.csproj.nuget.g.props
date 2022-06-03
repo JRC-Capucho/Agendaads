@@ -5,12 +5,12 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\zerou\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Joao's computer\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.2.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\zerou\.nuget\packages\" />
+    <SourceRoot Include="C:\Users\Joao's computer\.nuget\packages\" />
   </ItemGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Content Include="$(NuGetPackageRoot)mysql.data.entityframework\8.0.29\contentFiles\any\netstandard2.1\app.config.transform" Condition="Exists('$(NuGetPackageRoot)mysql.data.entityframework\8.0.29\contentFiles\any\netstandard2.1\app.config.transform')">
@@ -34,8 +34,8 @@
     <Import Project="$(NuGetPackageRoot)entityframework\6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.props" Condition="Exists('$(NuGetPackageRoot)entityframework\6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">C:\Users\zerou\.nuget\packages\entityframework\6.4.4</PkgEntityFramework>
-    <Pkgchocolatey Condition=" '$(Pkgchocolatey)' == '' ">C:\Users\zerou\.nuget\packages\chocolatey\0.9.8.3</Pkgchocolatey>
-    <Pkgmysql Condition=" '$(Pkgmysql)' == '' ">C:\Users\zerou\.nuget\packages\mysql\5.5.14.1</Pkgmysql>
+    <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">C:\Users\Joao's computer\.nuget\packages\entityframework\6.4.4</PkgEntityFramework>
+    <Pkgchocolatey Condition=" '$(Pkgchocolatey)' == '' ">C:\Users\Joao's computer\.nuget\packages\chocolatey\0.9.8.3</Pkgchocolatey>
+    <Pkgmysql Condition=" '$(Pkgmysql)' == '' ">C:\Users\Joao's computer\.nuget\packages\mysql\5.5.14.1</Pkgmysql>
   </PropertyGroup>
 </Project>

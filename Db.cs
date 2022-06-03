@@ -95,6 +95,140 @@ public class Db
         return false;
     }
 
+
+private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, comochegar, data, terminoaula) VALUES (@pro,@dis,@ini,@loc,@com,@dia,@term)";
+    public void adicionarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
+    {
+        try
+        {
+            command = new MySqlCommand(addAula, connection);
+
+            command.Parameters.AddWithValue("@pro", professor);
+            command.Parameters.AddWithValue("@dis", disciplina);
+            command.Parameters.AddWithValue("@ini", inicioaula);
+            command.Parameters.AddWithValue("@term", terminoaula);
+            command.Parameters.AddWithValue("@loc", localAula);
+            command.Parameters.AddWithValue("@com", comoChegar);
+            command.Parameters.AddWithValue("@dia", diaSemana);
+            
+            connection.Open();
+            command.ExecuteNonQuery();
+
+        }
+        catch (MySql.Data.MySqlClient.MySqlException ex)
+        {
+            System.Console.WriteLine("Error " + ex.Message.ToString());
+        }
+        finally
+        {
+            MessageBox.Show("Registrado no banco de dados com sucesso!");
+            connection.Close();
+        }
+    }
+
+    private string attAula =
+    "update grade set professor=@pro, aula=@dis, inicioaula=@ini, terminoaula=@term, local=@loc, comochegar=@com, data=@dia where aula=@au";
+
+    public void atualizarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
+    {
+        try
+        {
+            command = new MySqlCommand(attAula, connection);
+
+            command.Parameters.AddWithValue("@pro", professor);
+            command.Parameters.AddWithValue("@dis", disciplina);
+            command.Parameters.AddWithValue("@au", disciplina);
+            command.Parameters.AddWithValue("@ini", inicioaula);
+            command.Parameters.AddWithValue("@term", terminoaula);
+            command.Parameters.AddWithValue("@loc", localAula);
+            command.Parameters.AddWithValue("@com", comoChegar);
+            command.Parameters.AddWithValue("@dia", data);
+            
+            connection.Open();
+            command.ExecuteNonQuery();
+
+        }
+        catch (MySql.Data.MySqlClient.MySqlException ex)
+        {
+            System.Console.WriteLine("Error " + ex.Message.ToString());
+        }
+        finally
+        {
+            MessageBox.Show("Alteração no banco de dados com sucesso!");
+            connection.Close();
+        }
+    }
+
+
+    private string eraseAula = 
+    "delete from grade where aula=@dis";
+
+    public void excluirAula(String disciplina)
+    {
+        try
+        {
+            command = new MySqlCommand(eraseAula, connection);
+
+            command.Parameters.AddWithValue("@dis", disciplina);
+            
+            connection.Open();
+            command.ExecuteNonQuery();
+
+        }
+        catch (MySql.Data.MySqlClient.MySqlException ex)
+        {
+            System.Console.WriteLine("Error " + ex.Message.ToString());
+        }
+        finally
+        {
+            MessageBox.Show("Apagou do banco de dados com sucesso!");
+            connection.Close();
+        }
+    }
+
+
+    private string searchAula =
+    "select * from grade where aula=@dis";
+    public String[] buscarAula(String disciplina)
+    {
+        String[] data = new String[7];
+
+        try
+        {
+            command = new MySqlCommand(searchAula, connection);
+
+            command.Parameters.AddWithValue("@dis", disciplina);
+
+            connection.Open();
+            
+
+            reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                data[0] = Convert.ToString(reader["professor"]); 
+                data[1] = Convert.ToString(reader["aula"]); 
+                data[2] =  Convert.ToString(reader["inicioaula"]);
+                data[3] = Convert.ToString(reader["terminoaula"]); 
+                data[4] = Convert.ToString(reader["local"]);
+                data[5] = Convert.ToString(reader["comochegar"]);
+                data[6] = Convert.ToString(reader["data"]);
+            }
+        }
+        catch (MySql.Data.MySqlClient.MySqlException ex)
+        {
+            System.Console.WriteLine("Error " + ex.Message.ToString());
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return data;
+    }
+
+
+
+
     public void fecharDB()
     {
         connection.Close();

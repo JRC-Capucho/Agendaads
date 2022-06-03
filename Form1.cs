@@ -37,8 +37,10 @@ public partial class Form1 : Form
     [Obsolete]
     private void btStop_Click(object sender, EventArgs e)
     {
-        bancoDados.fecharDB();
-        tBot.StopReceiving();
+        this.Hide();
+        Form2 f2 = new Form2();
+        f2.ShowDialog();
+        this.Close();
     }
 
     [Obsolete]
@@ -92,7 +94,7 @@ public partial class Form1 : Form
                 tBot.SendTextMessageAsync(id,
                 "\n<b>Agenda Fatec 3 ADS</b>\n" +
                 "\nOla, aluno do terceiro semestre de analise e desenvolvimento de sistemas!" +
-                "\nDeseja ser notificado quando quando a aula começar!",
+                "\nDeseja ser notificado quando faltar 10 minutos da sua proxima aula",
                 Telegram.Bot.Types.Enums.ParseMode.Html, replyMarkup:CreateButton());
 
             }
@@ -100,7 +102,7 @@ public partial class Form1 : Form
             {
                 tBot.SendTextMessageAsync(id,
                 "\n<b>Agenda Fatec 3 ADS</b>\n" +
-                "\nOi, tudo bem? deseja ser notificado quando quando a aula começar!",
+                "\nOi, tudo bem? deseja ser notificado quando a aula começar!",
                 Telegram.Bot.Types.Enums.ParseMode.Html, replyMarkup:CreateButton());
             }
 
