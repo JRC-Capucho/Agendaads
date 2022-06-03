@@ -17,7 +17,7 @@ public class Db
     private string horarioDaAula;
     private string diaDaAula;
 
-    private string aula = "select * from grade where inicioaula=@t and data=@d;";
+    private string aula = "select * from grade where hora=@t and data=@d;";
 
     public string msgAula()
     {
@@ -54,7 +54,7 @@ public class Db
         return data;
     }
 
-    private string tempoAula = "select inicioaula, data from grade;";
+    private string tempoAula = "select hora, data from grade;";
 
     public Boolean inicioDaAula()
     {
@@ -74,7 +74,7 @@ public class Db
 
             while(reader.Read())
             {
-                horarioDaAula = Convert.ToString(reader["inicioaula"]);                
+                horarioDaAula = Convert.ToString(reader["hora"]);                
                 diaDaAula = Convert.ToString(reader["data"]);
 
                     if(horarioDaAula.Equals(aux) && auxdata.Equals(diaDaAula) )
@@ -96,9 +96,29 @@ public class Db
     }
 
 
-private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, comochegar, data, terminoaula) VALUES (@pro,@dis,@ini,@loc,@com,@dia,@term)";
+private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, comochegar, data, terminoaula, hora) VALUES (@pro,@dis,@ini,@loc,@com,@dia,@term,@hor)";
     public void adicionarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
     {
+        String hor;
+
+        if(inicioaula.Equals("07:00"))
+            hor = "06:50";
+        else
+            hor = "07:40";
+
+        diaSemana = diaSemana.ToLower();
+        
+        if(diaSemana.Equals("segunda"))
+            diaSemana= "sunday";
+        if(diaSemana.Equals("terça"))
+            diaSemana = "tuesday";
+        if(diaSemana.Equals("quarta"))
+            diaSemana = "wednesday";
+        if(diaSemana.Equals("quinta"))
+            diaSemana = "thuesday";
+        if(diaSemana.Equals("sexta"))
+            diaSemana= "friday";
+        
         try
         {
             command = new MySqlCommand(addAula, connection);
@@ -110,7 +130,8 @@ private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, 
             command.Parameters.AddWithValue("@loc", localAula);
             command.Parameters.AddWithValue("@com", comoChegar);
             command.Parameters.AddWithValue("@dia", diaSemana);
-            
+            command.Parameters.AddWithValue("@hor", hor);
+
             connection.Open();
             command.ExecuteNonQuery();
 
@@ -127,10 +148,29 @@ private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, 
     }
 
     private string attAula =
-    "update grade set professor=@pro, aula=@dis, inicioaula=@ini, terminoaula=@term, local=@loc, comochegar=@com, data=@dia where aula=@au";
+    "update grade set professor=@pro, aula=@dis, inicioaula=@ini, terminoaula=@term, local=@loc, comochegar=@com, data=@dia, hora=@hor where aula=@au";
 
     public void atualizarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
     {
+        String hor;
+        if(inicioaula.Equals("07:00"))
+            hor = "06:50";
+        else
+            hor = "07:40";
+        
+        diaSemana = diaSemana.ToLower();
+        
+        if(diaSemana.Equals("segunda"))
+            diaSemana= "sunday";
+        if(diaSemana.Equals("terça"))
+            diaSemana = "tuesday";
+        if(diaSemana.Equals("quarta"))
+            diaSemana = "wednesday";
+        if(diaSemana.Equals("quinta"))
+            diaSemana = "thuesday";
+        if(diaSemana.Equals("sexta"))
+            diaSemana= "friday";
+        
         try
         {
             command = new MySqlCommand(attAula, connection);
