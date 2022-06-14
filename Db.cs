@@ -99,14 +99,16 @@ public class Db
 private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, comochegar, data, terminoaula, hora) VALUES (@pro,@dis,@ini,@loc,@com,@dia,@term,@hor)";
     public void adicionarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
     {
-        
         String hor;
         
-        if(inicioaula.Equals("07:00"))
+        if(inicioaula.Substring(3).Equals("00"))
             hor = "06:50";
-        else
-            hor = "07:40";
-        
+        else{
+            aux = inicioaula.Substring(0,2);
+            int m = Convert.ToInt32(inicioaula.Substring(3)) - 10;
+            hor = aux + ":" + Convert.ToString(m);
+        }
+
         diaSemana = diaSemana.ToLower();
         
         if(diaSemana.Equals("segunda"))
@@ -154,10 +156,14 @@ private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, 
     public void atualizarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
     {
         String hor;
-        if(inicioaula.Equals("07:00"))
+        
+        if(inicioaula.Substring(3).Equals("00"))
             hor = "06:50";
-        else
-            hor = "07:40";
+        else{
+            aux = inicioaula.Substring(0,2);
+            int m = Convert.ToInt32(inicioaula.Substring(3)) - 10;
+            hor = aux + ":" + Convert.ToString(m);
+        }
         
         diaSemana = diaSemana.ToLower();
         
@@ -249,7 +255,7 @@ private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, 
             {
                 data[0] = Convert.ToString(reader["professor"]); 
                 data[1] = Convert.ToString(reader["aula"]); 
-                data[2] =  Convert.ToString(reader["inicioaula"]);
+                data[2] = Convert.ToString(reader["inicioaula"]);
                 data[3] = Convert.ToString(reader["terminoaula"]); 
                 data[4] = Convert.ToString(reader["local"]);
                 data[5] = Convert.ToString(reader["comochegar"]);
@@ -266,9 +272,6 @@ private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, 
         }
         return data;
     }
-
-
-
 
     public void fecharDB()
     {
