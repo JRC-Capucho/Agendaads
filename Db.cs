@@ -99,13 +99,14 @@ public class Db
 private string addAula = "INSERT INTO grade(professor, aula, inicioaula, local, comochegar, data, terminoaula, hora) VALUES (@pro,@dis,@ini,@loc,@com,@dia,@term,@hor)";
     public void adicionarAula(String professor, String disciplina,String inicioaula,String terminoaula, String localAula, String comoChegar, String diaSemana)
     {
+        
         String hor;
-
+        
         if(inicioaula.Equals("07:00"))
             hor = "06:50";
         else
             hor = "07:40";
-
+        
         diaSemana = diaSemana.ToLower();
         
         if(diaSemana.Equals("segunda"))

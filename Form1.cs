@@ -8,7 +8,7 @@ namespace AgendaADS;
 public partial class Form1 : Form
 {
     private TelegramBotClient tBot;
-    private String idChat = "";
+    private String idChat = "5368251518:AAE3aMLrEAdbWFdWoRDX4ZtTFANjLERPFQc";
     private Db bancoDados = new Db();
     private System.Timers.Timer aTimer;
 
@@ -60,7 +60,7 @@ public partial class Form1 : Form
                 "\nVocê será notificado quando faltar 10 minutos da sua proxima aula!",
                 Telegram.Bot.Types.Enums.ParseMode.Html, replyMarkup: null);
 
-                    Boolean sair = true;
+                   Boolean sair = true;
                 do{
                     if(bancoDados.inicioDaAula())
                     {
