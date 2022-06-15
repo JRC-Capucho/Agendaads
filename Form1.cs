@@ -8,7 +8,7 @@ namespace AgendaADS;
 public partial class Form1 : Form
 {
     private TelegramBotClient tBot;
-    private String idChat = "5368251518:AAE3aMLrEAdbWFdWoRDX4ZtTFANjLERPFQc";
+    private String idChat = "";
     private Db bancoDados = new Db();
     private System.Timers.Timer aTimer;
 
